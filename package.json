@@ -2,19 +2,26 @@
   "name": "npcs",
   "version": "1.0.0",
   "description": "Create a PDF containing NPCs cards",
-  "main": "listToPdf.js",
+  "main": "./src/server.js",
   "scripts": {
-    "start": "node ./listToPdf.js"
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js"
   },
   "author": "Adrien Rault <adrien@rault.io>",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "ejs": "^3.0.1",
+    "express": "^4.17.1",
     "lodash": "^4.17.15",
-    "node": "^13.5.0",
     "pdf-lib": "^1.3.0",
     "pdf-puppeteer": "^1.1.9",
-    "sade": "^1.7.0",
     "sharp": "^0.23.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "engines": {
+    "node": "^12.14.0"
   }
 }

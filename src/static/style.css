@@ -1,0 +1,71 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  width: calc(100vw - 40px);
+  height: calc(100vh - 40px);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 20px;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+#imageList {
+  list-style-type: none;
+  display: flex;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+#imageList li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 10px;
+}
+
+#imageList li img {
+  width: 223.217px;
+  height: 264.733px;
+  object-fit: cover;
+  object-position: 50% 0;
+  border: 1px dotted black;
+  margin-bottom: 10px;
+}
+
+#imageList .delete {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+input[type=text] {
+  border-radius: 0px;
+  border: 1px solid gainsboro;
+}
+
+.role {
+  margin-top: 5px;
+}
+
+#uploader {
+  display: none;
+}
+
+#uploaderLabel {
+  cursor: pointer;
+  background-color: hsl(4, 78%, 92%);
+  padding: 5px;
+}
+
+#download {
+  background-color: hsl(90, 78%, 92%);
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+}
