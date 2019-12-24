@@ -7,6 +7,8 @@ async function generatePDF(html) {
     convertHTMLToPDF(html, resolve, {
       landscape: true,
       format: 'A4',
+    }, {
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
   });
 }

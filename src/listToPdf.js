@@ -2,7 +2,6 @@ const ejs = require('ejs');
 const { chunk } = require('lodash');
 const { imgToBase64, mergePDFs, generatePDF } = require('./utils');
 const { template } = require('./template');
-const fs = require('fs').promises;
 
 async function listToPdf(body) {
   const npcs = await Promise.all(
@@ -18,7 +17,6 @@ async function listToPdf(body) {
       }, {
         async: true,
       });
-      await fs.writeFile('./src/static/output.html', html, { encoding: 'utf-8' });
       return generatePDF(html);
     })
   );
