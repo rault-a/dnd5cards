@@ -19,17 +19,29 @@ function b64ToBuffer(str: string): Buffer {
 
 export async function imgToBase64(img: string): Promise<string> {
   const inputBuffer = b64ToBuffer(img);
-  const outputBuffer = await sharp(inputBuffer).resize(500).flatten({ background: { r: 255, g: 255, b: 255, }}).removeAlpha().webp().toBuffer();
-  return 'data:image/webp;base64,' + Buffer.from(outputBuffer).toString('base64');
+  const outputBuffer = await sharp(inputBuffer)
+    .resize(500)
+    .flatten({ background: { r: 255, g: 255, b: 255 } })
+    .removeAlpha()
+    .webp()
+    .toBuffer();
+  return `data:image/webp;base64,${Buffer.from(outputBuffer).toString('base64')}`;
 }
+
+function getPageFactory(pdfDoc: PDFDocument) {
+  return async function getPage(pdf: Buffer) {
+    const tmpPdfDoc = await PDFDocument.load(pdf);
+    const [page] = await pdfDoc.copyPages(tmpPdfDoc, [0]);
+    return page;
+  };
+}
+
 
 export async function mergePDFs(pdfs: Buffer[]): Promise<Buffer> {
   const pdfDoc = await PDFDocument.create();
-  for (const pdf of pdfs) {
-    const tmpPdfDoc = await PDFDocument.load(pdf);
-    const [page] = await pdfDoc.copyPages(tmpPdfDoc, [0]);
-    pdfDoc.addPage(page);
-  }
+  const getPage = getPageFactory(pdfDoc);
+  const pages = await Promise.all(pdfs.map((pdf) => getPage(pdf)));
+  pages.forEach((page) => pdfDoc.addPage(page));
 
   return Buffer.from(await pdfDoc.save());
 }

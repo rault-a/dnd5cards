@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { listToPdf } from './listToPdf';
+import { logger } from './logger';
 
 const app = express();
 
@@ -16,12 +17,11 @@ app
       res.type('pdf');
       res.send(pdf);
     } catch (e) {
-      console.error(e);
+      logger.error(e);
       res.status(500).send('Server error');
     }
   })
   .use(express.static('./static'))
   .listen(PORT, () => {
-    console.log(`Server started on ${PORT}`);
+    logger.info(`Server started on ${PORT}`);
   });
-

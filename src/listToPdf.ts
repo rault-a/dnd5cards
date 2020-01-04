@@ -11,9 +11,7 @@ export type NPCData = {
 
 export async function listToPdf(body: NPCData[]) {
   const npcs = await Promise.all(
-    body.map(async ({ name, role, image }) => {
-      return { name, role, img: await imgToBase64(image) };
-    }),
+    body.map(async ({ name, role, image }) => ({ name, role, img: await imgToBase64(image) })),
   );
 
   const pdfs = await Promise.all(
@@ -24,8 +22,8 @@ export async function listToPdf(body: NPCData[]) {
         async: true,
       });
       return generatePDF(html);
-    })
+    }),
   );
-  
+
   return mergePDFs(pdfs);
 }
