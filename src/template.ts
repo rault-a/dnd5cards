@@ -1,4 +1,4 @@
-const template = `<!doctype html>
+export const template = `<!doctype html>
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css?family=Engagement&display=swap" rel="stylesheet">
 <style>
@@ -18,7 +18,3 @@ const template = `<!doctype html>
 <ul class="list"><% for (const { name, role, img } of characters) { %>
   <li><img src="<%= img %>"><p><%= name %><br><%= role %></p></li>
 <% } %></ul>`;
-
-module.exports = {
-  template,
-};

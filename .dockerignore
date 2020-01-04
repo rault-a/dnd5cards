@@ -1,1 +1,9 @@
 node_modules
+dist
+.git
+.gitignore
+.docker-compose.yml
+Dockerfile
+example.png
+heroku.yml
+README.md

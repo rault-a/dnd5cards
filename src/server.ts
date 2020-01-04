@@ -1,15 +1,13 @@
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const { listToPdf } = require('./listToPdf');
-const fs = require('fs').promises;
+import express from 'express';
+import bodyParser from 'body-parser';
+import { listToPdf } from './listToPdf';
 
 const app = express();
 
-const { PORT = 8080 } = process.env;
+const { PORT = '8080' } = process.env;
 
 app
-  .use(bodyParser.json({ limit: '50mb', extended: true }))
+  .use(bodyParser.json({ limit: '50mb' }))
   .post('/api/download', async (req, res) => {
     try {
       const pdf = await listToPdf(req.body);
@@ -22,7 +20,7 @@ app
       res.status(500).send('Server error');
     }
   })
-  .use(express.static(path.join(__dirname, 'static')))
+  .use(express.static('./static'))
   .listen(PORT, () => {
     console.log(`Server started on ${PORT}`);
   });

@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "inlineSourceMap": true,
+    "removeComments": true,
+    "baseUrl": ".",
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "alwaysStrict": true,
+    "composite": true,
+    "declaration": true,
+    "noImplicitReturns": true,
+    "strict": true,
+    "target": "ES2018",
+  },
+  "include": [
+    "./src/**/*", "static"
+  ]
+}
