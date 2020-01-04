@@ -1,9 +1,15 @@
-const ejs = require('ejs');
-const { chunk } = require('lodash');
-const { imgToBase64, mergePDFs, generatePDF } = require('./utils');
-const { template } = require('./template');
+import ejs from 'ejs';
+import { chunk } from 'lodash';
+import { imgToBase64, mergePDFs, generatePDF } from './utils';
+import { template } from './template';
 
-async function listToPdf(body) {
+export type NPCData = {
+  name: string;
+  role: string;
+  image: string;
+};
+
+export async function listToPdf(body: NPCData[]) {
   const npcs = await Promise.all(
     body.map(async ({ name, role, image }) => {
       return { name, role, img: await imgToBase64(image) };
@@ -21,9 +27,5 @@ async function listToPdf(body) {
     })
   );
   
-  return Buffer.from(await mergePDFs(pdfs));
+  return mergePDFs(pdfs);
 }
-
-module.exports = {
-  listToPdf,
-};
