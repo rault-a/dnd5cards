@@ -28,7 +28,7 @@ RUN chown -R code:code /code
 USER code
 WORKDIR /code
 
-ENTRYPOINT [ "npm", "run", "start:prod" ]
+ENTRYPOINT [ "npm", "run", "start" ]
 
 COPY --chown=code:code package.json package-lock.json /code/
 RUN npm ci

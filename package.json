@@ -4,9 +4,8 @@
   "description": "Create a PDF containing NPCs cards",
   "main": "./src/server.js",
   "scripts": {
-    "start": "node ./src/server.js",
-    "dev": "nodemon ./src/server.js",
-    "start:prod": "node ./dist/src/server.js",
+    "dev": "tsc-watch --onSuccess \"node ./dist/src/server.js\"",
+    "start": "node ./dist/src/server.js",
     "build": "tsc"
   },
   "author": "Adrien Rault <adrien@rault.io>",
@@ -27,7 +26,7 @@
     "@types/lodash": "^4.14.149",
     "@types/node": "^13.1.1",
     "@types/sharp": "^0.23.1",
-    "nodemon": "^2.0.2",
+    "tsc-watch": "^4.0.0",
     "typescript": "^3.7.4"
   },
   "engines": {
